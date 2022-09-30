@@ -1,0 +1,57 @@
+---
+import { generateImage } from "astro-eleventy-img";
+import { Icon } from "astro-icon";
+import Starfield from "~/components/starfield.astro";
+import {SITE} from "../config.mjs"
+// import HeroImage from "~/components/hero-image.astro";
+---
+
+<section class="relative h-full bg-black">
+  <Starfield />
+  <div
+    class="relative flex h-screen flex-col justify-center items-center text-white"
+  >
+    <!-- <Icon name="logomark" class="h-96 sm:h-1/2" /> -->
+    <img src="/assets/logo.png" alt={SITE.name} class="h-96 sm:h-1/2"/>
+    <span class="text-base font-semibold pt-8 sm:pt-16">{SITE.description}</span>
+
+  </div>
+</section>
+
+<noscript>
+  <style>
+    #splash-bg-fallback {
+      display: block;
+    }
+  </style>
+</noscript>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+      transform: translate3d(0, 30px, 0);
+    }
+  }
+
+  picture {
+    animation: float linear 2.5s infinite alternate;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    picture {
+      @apply animate-none;
+    }
+
+    :global(#starfield) {
+      @apply hidden;
+    }
+
+    #splash-bg-fallback {
+      @apply block;
+    }
+  }
+</style>
